@@ -1,0 +1,55 @@
+{
+  "name": "pnpm-root",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -F lib build",
+    "build:fast": "pnpm -F lib build:fast",
+    "dev": "pnpm -F lib dev",
+    "test": "pnpm -F lib test",
+    "test:watch": "pnpm -F lib test:watch",
+    "coverage": "pnpm -F lib coverage",
+    "size": "size-limit",
+    "prepare": "husky install",
+    "prettier": "prettier",
+    "lint": "eslint ./lib",
+    "lint:fix": "eslint ./lib ./example --fix && yarn format",
+    "type-check": "tsc --noEmit"
+  },
+  "description": "PNPM monorepo template",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^17.4.0",
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "commitlint": "^17.4.0",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.2",
+    "size-limit": "^8.1.0",
+    "tsup": "^6.5.0",
+    "turbo": "^1.6.3",
+    "typescript": "^4.9.4",
+    "vite": "^3.2.5",
+    "vitest": "^0.24.5"
+  },
+  "packageManager": "pnpm@7.9.0",
+  "size-limit": [
+    {
+      "path": "./lib/dist/index.js",
+      "limit": "15 kb"
+    },
+    {
+      "path": "./lib/dist/index.mjs",
+      "limit": "15 kb"
+    }
+  ]
+}
