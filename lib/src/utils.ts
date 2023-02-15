@@ -64,7 +64,7 @@ export async function getKitFromGitHub(kit: string, projectName: string) {
   try {
     await emitter.clone(destFolder);
   } catch (error: unknown) {
-    cancel(error instanceof Error ? error.message : 'Something wrong happens 💔');
+    cancel(error instanceof Error ? error.message : 'Something wrong happen 💔');
     process.exit(1);
   }
 }

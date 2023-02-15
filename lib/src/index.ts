@@ -29,14 +29,14 @@ export async function main() {
   handleCancelation(kit);
 
   const initGitRepo = await confirm({
-    message: 'Do you want initialize a git repo?',
+    message: 'Do you want to initialize a git repo?',
     initialValue: false,
   });
 
   handleCancelation(initGitRepo);
 
   const install = await confirm({
-    message: 'Want continue?',
+    message: 'Do you want to continue?',
     initialValue: false,
   });
 
@@ -44,7 +44,7 @@ export async function main() {
 
   if (install) {
     const s = spinner();
-    s.start('Starting the project ⏳');
+    s.start('Starting the project... ⏳');
     await getKitFromGitHub(kit as string, projectName as string);
     s.stop('Done ✅');
   }
