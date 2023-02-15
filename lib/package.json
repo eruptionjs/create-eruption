@@ -1,14 +1,18 @@
 {
-  "name": "lib",
+  "name": "create-eruption",
   "version": "0.0.1",
-  "description": "My Awesome lib",
+  "description": "The Eruption CLI 🌋",
   "license": "MIT",
   "author": "Raí Siqueira <me@raisiqueira.io>",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./eruption-cli.mjs"
+  },
+  "bin": {
+    "create-eruption": "./eruption-cli.mjs"
+  },
   "files": [
-    "dist"
+    "dist",
+    "eruption-cli.mjs"
   ],
   "scripts": {
     "build": "tsup src -- --dts-resolve",
@@ -19,10 +23,16 @@
     "coverage": "vitest run --coverage"
   },
   "keywords": [
-    "awesome-keywords"
+    "cli"
   ],
   "devDependencies": {
-    "@vitest/coverage-c8": "^0.24.5",
-    "happy-dom": "^6.0.4"
+    "@vitest/coverage-c8": "^0.24.5"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.2.2",
+    "kleur": "^4.1.5",
+    "node-fetch": "^3.3.0",
+    "tiged": "^2.12.3",
+    "yargs-parser": "^21.1.1"
   }
 }
