@@ -1,6 +1,10 @@
-# pnpm-monorepo
+# create-eruption 🌋
 
-> A PNPM monorepo template to my personal projects.
+> The official template to create a new Eruption project.
+
+## Usage
+
+WIP - This template is not ready yet.
 
 ## What is in this repository?
 
@@ -12,25 +16,10 @@
 - [ESLint](https://eslint.org/) as a code linter.
 - [Turbo](https://turbo.build) as cacheable build tool.
 
-## Using this repository
-
-- clone the repository or click in "Use this template" button.
-- Go to `lib/package.json` and edit the `name`, `description` and `author` fields.
-
 ## Folder structure
 
 - docs - An empty folder to store documentation.
-- example - A folder with an example project. Think as playground.
-- lib - A folder with a library.
-
-## Using Turbo to run commands
-
-Turbo is a cacheable build tool. This project uses it to run the `build`, `test` and `coverage` commands.
-
-```bash
-# Instead of running `pnpm build`, run:
-pnpx turbo build
-```
+- lib - The CLI source.
 
 ## License
 

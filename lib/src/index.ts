@@ -3,7 +3,7 @@ import { underline, green } from 'kleur';
 import { setTimeout } from 'node:timers/promises';
 import path from 'path';
 
-import { AVAILABLE_KITS } from './constants.mjs';
+import { AVAILABLE_KITS } from './constants';
 import {
   handleCancelation,
   getKitFromGitHub,
