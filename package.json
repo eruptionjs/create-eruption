@@ -46,10 +46,6 @@
     {
       "path": "./lib/dist/index.js",
       "limit": "15 kb"
-    },
-    {
-      "path": "./lib/dist/index.mjs",
-      "limit": "15 kb"
     }
   ]
 }

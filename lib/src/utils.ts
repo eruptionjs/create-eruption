@@ -2,7 +2,8 @@ import { isCancel, cancel } from '@clack/prompts';
 import { exec } from 'child_process';
 import fs from 'fs/promises';
 import path from 'path';
-import tiged from 'tiged';
+// @ts-ignore
+import degit from 'tiged';
 
 /**
  * Handle the user cancelation in the CLI.
@@ -23,8 +24,8 @@ export async function fileExists(path: string) {
   try {
     await fs.stat(path);
     return true;
-  } catch (error) {
-    if (error.code === 'ENOENT') {
+  } catch (error: unknown) {
+    if ((error as any).code === 'ENOENT') {
       return false;
     } else {
       throw error;
@@ -53,7 +54,7 @@ export async function getKitFromGitHub(kit: string, projectName: string) {
   /** The destiny folder where the project will be cloned. */
   const destFolder = path.join(process.cwd(), projectName);
 
-  const emitter = tiged(repoName, {
+  const emitter = degit(repoName, {
     cache: false,
     force: true,
     verbose: false,
