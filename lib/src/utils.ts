@@ -48,7 +48,6 @@ export async function initGitRepo(path: string) {
 }
 
 export async function getKitFromGitHub(kit: string, projectName: string) {
-  // TODO: Implement using tiged;
   /** example: eruptionjs/core - That means tiged will clone the core repository. */
   const repoName = `eruptionjs/${kit}`;
   /** The destiny folder where the project will be cloned. */
@@ -66,5 +65,45 @@ export async function getKitFromGitHub(kit: string, projectName: string) {
   } catch (error: unknown) {
     cancel(error instanceof Error ? error.message : 'Something wrong happen 💔');
     process.exit(1);
+  }
+}
+
+/**
+ * Remove a file from a given path.
+ */
+export async function removeFile(fileName: string, directoryPath: string): Promise<boolean> {
+  let removed: boolean;
+  try {
+    await fs.unlink(path.join(directoryPath, fileName));
+    removed = true;
+  } catch (err) {
+    removed = false;
+  }
+  return removed;
+}
+
+/**
+ * Initialize the Node project and update the package.json with the project name.
+ */
+export async function initNodeProject(
+  packageJsonPath: string,
+  projectDestPath: string,
+  projectName: string
+) {
+  const packageJSON = JSON.parse(await fs.readFile(packageJsonPath, 'utf8'));
+  packageJSON.name = projectName;
+  packageJSON.version = '1.0.0';
+
+  try {
+    await fs.writeFile(
+      path.join(projectDestPath, 'package.json'),
+      JSON.stringify(packageJSON, null, 2)
+    );
+
+    await removeFile('package-lock.json', projectDestPath);
+    await removeFile('yarn.lock', projectDestPath);
+    await removeFile('pnpm-lock.yaml', projectDestPath);
+  } catch (_) {
+    cancel('Failed to update package.json. You may need to update manually');
   }
 }

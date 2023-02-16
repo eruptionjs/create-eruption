@@ -1,9 +1,15 @@
-import { intro, outro, text, select, confirm, spinner, note } from '@clack/prompts';
+import { intro, outro, text, select, confirm, spinner, note, cancel } from '@clack/prompts';
 import { underline, green } from 'kleur';
 import { setTimeout } from 'node:timers/promises';
+import path from 'path';
 
 import { AVAILABLE_KITS } from './constants.mjs';
-import { handleCancelation, getKitFromGitHub } from './utils';
+import {
+  handleCancelation,
+  getKitFromGitHub,
+  initGitRepo as initializeGit,
+  initNodeProject,
+} from './utils';
 
 export async function main() {
   intro(`Welcome to the Eruption CLI 🌋`);
@@ -44,9 +50,22 @@ export async function main() {
 
   if (install) {
     const s = spinner();
+    const destPath = path.join(process.cwd(), projectName as string);
+    const packageJsonPath = path.join(destPath, 'package.json');
     s.start('Starting the project... ⏳');
     await getKitFromGitHub(kit as string, projectName as string);
+    await initNodeProject(packageJsonPath, destPath, projectName as string);
     s.stop('Done ✅');
+  }
+
+  if (initGitRepo) {
+    const projectFolder = path.join(process.cwd(), projectName as string);
+    try {
+      await initializeGit(projectFolder);
+    } catch (error: unknown) {
+      cancel(`Something happen during the git initialization.`);
+      process.exit(1);
+    }
   }
 
   const nextSteps = `cd ${projectName as string}        \n${
