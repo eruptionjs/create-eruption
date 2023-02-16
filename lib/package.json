@@ -4,6 +4,14 @@
   "description": "The Eruption CLI 🌋",
   "license": "MIT",
   "author": "Raí Siqueira <me@raisiqueira.io>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eruptionjs/create-eruption",
+    "directory": "lib"
+  },
+  "bugs": {
+    "url": "https://github.com/eruptionjs/create-eruption/issues"
+  },
   "exports": {
     ".": "./eruption-cli.mjs"
   },
@@ -23,7 +31,13 @@
     "coverage": "vitest run --coverage"
   },
   "keywords": [
-    "cli"
+    "cli",
+    "eruption",
+    "react-template",
+    "vite-template",
+    "vitest-template",
+    "vite",
+    "vitest"
   ],
   "devDependencies": {
     "@vitest/coverage-c8": "^0.24.5"
