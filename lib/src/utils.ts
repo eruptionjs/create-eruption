@@ -2,6 +2,7 @@ import { isCancel, cancel } from '@clack/prompts';
 import { exec } from 'child_process';
 import fs from 'fs/promises';
 import path from 'path';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import degit from 'tiged';
 

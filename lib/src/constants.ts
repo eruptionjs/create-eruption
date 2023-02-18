@@ -1,15 +1,11 @@
+import { Kit } from './types';
 /**
  * The available kits.
- * @returns {@type{import('./types').Kit[]}} returns a list of available kits.
+ * @returns returns a list of available kits.
  */
-export const AVAILABLE_KITS = [
+export const AVAILABLE_KITS: Kit[] = [
   {
     label: 'Eruption Core (React, Vite and Vitest)',
     value: 'core',
-  },
-  {
-    label: 'Another Eruption (SolidJS, Vite and Vitest)',
-    value: 'eruption-solid',
-    hint: 'Not available, yet 😢',
   },
 ];
