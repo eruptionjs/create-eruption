@@ -1,6 +1,7 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
-    "types": ["vitest/globals"]
-  }
+    "allowJs": true,
+    "types": ["vitest/globals"],
+  },
 }

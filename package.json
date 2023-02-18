@@ -2,12 +2,12 @@
   "name": "pnpm-root",
   "private": true,
   "scripts": {
-    "build": "pnpm -F lib build",
-    "build:fast": "pnpm -F lib build:fast",
-    "dev": "pnpm -F lib dev",
-    "test": "pnpm -F lib test",
-    "test:watch": "pnpm -F lib test:watch",
-    "coverage": "pnpm -F lib coverage",
+    "build": "pnpm -F create-eruption build",
+    "build:fast": "pnpm -F create-eruption build:fast",
+    "dev": "pnpm -F create-eruption dev",
+    "test": "pnpm -F create-eruption test",
+    "test:watch": "pnpm -F create-eruption test:watch",
+    "coverage": "pnpm -F create-eruption coverage",
     "size": "size-limit",
     "prepare": "husky install",
     "prettier": "prettier",
@@ -45,10 +45,6 @@
   "size-limit": [
     {
       "path": "./lib/dist/index.js",
-      "limit": "15 kb"
-    },
-    {
-      "path": "./lib/dist/index.mjs",
       "limit": "15 kb"
     }
   ]
