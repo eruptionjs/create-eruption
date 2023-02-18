@@ -4,9 +4,15 @@
 
 ## Usage
 
-WIP - This template is not ready yet.
+To initialize a new project, run the following command:
 
-## What is in this repository?
+```bash
+npm init eruption@latest
+```
+
+### Contributing to this CLI
+
+### What is in this repository?
 
 - [PNPM](https://pnpm.io/workspaces) as workspace manager and package manager.
 - [TSUP](https://tsup.egoist.dev/) as a TypeScript universal package.
@@ -16,7 +22,7 @@ WIP - This template is not ready yet.
 - [ESLint](https://eslint.org/) as a code linter.
 - [Turbo](https://turbo.build) as cacheable build tool.
 
-## Folder structure
+### Folder structure
 
 - docs - An empty folder to store documentation.
 - lib - The CLI source.
