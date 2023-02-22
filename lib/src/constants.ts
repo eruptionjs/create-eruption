@@ -1,4 +1,4 @@
-import { Kit } from './types';
+import type { Kit } from './types';
 /**
  * The available kits.
  * @returns returns a list of available kits.

@@ -1,6 +1,6 @@
 {
   "name": "create-eruption",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "The Eruption CLI 🌋",
   "license": "MIT",
   "author": "Raí Siqueira <me@raisiqueira.io>",
@@ -40,11 +40,12 @@
     "vitest"
   ],
   "devDependencies": {
+    "@clack/prompts": "^0.5.0",
     "@tsconfig/node16": "^1.0.3",
+    "@types/yargs-parser": "^21.0.0",
     "@vitest/coverage-c8": "^0.24.5"
   },
   "dependencies": {
-    "@clack/prompts": "^0.2.2",
     "kleur": "^4.1.5",
     "node-fetch": "^3.3.0",
     "tiged": "^2.12.3",

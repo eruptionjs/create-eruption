@@ -2,6 +2,7 @@ import { intro, outro, text, select, confirm, spinner, note, cancel } from '@cla
 import { underline, green } from 'kleur';
 import { setTimeout } from 'node:timers/promises';
 import path from 'path';
+import parser from 'yargs-parser';
 
 import { AVAILABLE_KITS } from './constants';
 import {
@@ -12,32 +13,48 @@ import {
 } from './utils';
 
 export async function main() {
-  intro(`Welcome to the Eruption CLI 🌋`);
-
-  const projectName = await text({
-    message: 'What is the name of your project?',
-    initialValue: 'eruption',
-    placeholder: 'E.g: my-awesome-project',
-    validate(value) {
-      if (value.length === 0) {
-        return `The project name is required!`;
-      }
+  const cleanArgv = process.argv.filter((arg) => arg !== '--');
+  const args = parser(cleanArgv, {
+    string: ['name', 'kit'],
+    boolean: ['git'],
+    default: {
+      git: true,
     },
   });
 
+  intro(`Welcome to the Eruption CLI 🌋`);
+
+  const projectName = args?.name
+    ? args.name
+    : await text({
+        message: 'What is the name of your project?',
+        initialValue: 'eruption',
+        placeholder: 'E.g: my-awesome-project',
+        validate(value) {
+          if (value.length === 0) {
+            return `The project name is required!`;
+          }
+        },
+      });
+
   handleCancelation(projectName);
 
-  const kit = await select({
-    message: 'Select your Eruption kit',
-    options: AVAILABLE_KITS,
-  });
+  const kit = args.kit
+    ? args.kit
+    : await select({
+        message: 'Select your Eruption kit',
+        options: AVAILABLE_KITS,
+      });
 
   handleCancelation(kit);
 
-  const initGitRepo = await confirm({
-    message: 'Do you want to initialize a git repo?',
-    initialValue: false,
-  });
+  const initGitRepo =
+    'git' in args
+      ? args.git
+      : await confirm({
+          message: 'Do you want to initialize a git repo?',
+          initialValue: false,
+        });
 
   handleCancelation(initGitRepo);
 
@@ -56,6 +73,9 @@ export async function main() {
     await getKitFromGitHub(kit as string, projectName as string);
     await initNodeProject(packageJsonPath, destPath, projectName as string);
     s.stop('Done ✅');
+  } else {
+    cancel('Ok, installation canceled. See you later! 🤗');
+    process.exit(1);
   }
 
   if (initGitRepo) {

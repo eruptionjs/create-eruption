@@ -6,3 +6,13 @@ export type Kit = {
   label: string;
   hint?: string;
 };
+
+/**
+ * CLI flags.
+ */
+export type Flags = {
+  name: string;
+  kit: string;
+  git: boolean;
+  install: boolean;
+};

@@ -10,7 +10,27 @@ To initialize a new project, run the following command:
 npm init eruption@latest
 ```
 
-The CLI will ask you a few questions and then create a new project for you.
+Or, if you prefer to use `yarn`:
+
+```bash
+yarn create eruption@latest
+```
+
+The CLI will ask you a few questions (_in interactive_ mode) and then create a new project for you, but you can also pass a few flags to skip the interactive mode.
+
+## Available Kits
+
+| Name | Description                            | Repository                         |
+| ---- | -------------------------------------- | ---------------------------------- |
+| core | The core kit (React, Vite and Vitest). | https://github.com/eruptionjs/core |
+
+### CLI Flags
+
+| Flag     | Description                                                                                               | Default     |
+| -------- | --------------------------------------------------------------------------------------------------------- | ----------- |
+| `--name` | The name of the project.                                                                                  | `undefined` |
+| `--kit`  | The kit to use (e.g: core. The CLI will use the `https://github.com/eruptionjs/core` repository as base). | `undefined` |
+| `git`    | Whether to initialize a git repository.                                                                   | `true`      |
 
 ## License
 
