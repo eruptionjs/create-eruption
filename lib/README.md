@@ -24,7 +24,7 @@ The CLI will ask you a few questions (_in interactive_ mode) and then create a n
 | ---- | -------------------------------------- | ---------------------------------- |
 | core | The core kit (React, Vite and Vitest). | https://github.com/eruptionjs/core |
 
-### CLI Flags
+## CLI Flags
 
 | Flag     | Description                                                                                               | Default     |
 | -------- | --------------------------------------------------------------------------------------------------------- | ----------- |
