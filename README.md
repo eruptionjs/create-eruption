@@ -1,16 +1,32 @@
 # create-eruption 🌋
 
-> The official template to create a new Eruption project.
+> The official template to create a Eruption project.
 
 ## Usage
 
-To initialize a new project, run the following command:
+To initialize a new project, run the following command (with you prefered package manager)):
 
 ```bash
 npm init eruption@latest
 ```
 
+```bash
+yarn create eruption@latest
+```
+
+```bash
+pnpm create eruption@latest
+```
+
 ### Contributing to this CLI
+
+The CLI uses [Clack](https://github.com/natemoo-re/clack) to generate the prompt. The main file is located in `lib/eruption-cli.mjs`. To run the CLI locally, run the following command on the root of the repository:
+
+```bash
+pnpm run dev
+```
+
+This command will run the CLI in watch mode, so you can make changes and see them reflected in the CLI.
 
 ### What is in this repository?
 
@@ -20,13 +36,12 @@ npm init eruption@latest
 - [Size Limit](https://github.com/ai/size-limit) as a size limit plugin.
 - [Prettier](https://prettier.io/) as a code formatter.
 - [ESLint](https://eslint.org/) as a code linter.
-- [Turbo](https://turbo.build) as cacheable build tool.
 
 ### Folder structure
 
-- docs - An empty folder to store documentation.
-- lib - The CLI source.
+- [docs](./docs/) - An empty folder to store documentation.
+- [lib](./lib/) - The CLI source.
 
 ## License
 
-MIT @ Raí Siqueira
+MIT @ EruptionJS and its contributors.

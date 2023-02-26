@@ -4,16 +4,18 @@
 
 ## Usage
 
-To initialize a new project, run the following command:
+To initialize a new project, run the following command (with you prefered package manager)):
 
 ```bash
 npm init eruption@latest
 ```
 
-Or, if you prefer to use `yarn`:
-
 ```bash
 yarn create eruption@latest
+```
+
+```bash
+pnpm create eruption@latest
 ```
 
 The CLI will ask you a few questions (_in interactive_ mode) and then create a new project for you, but you can also pass a few flags to skip the interactive mode.
