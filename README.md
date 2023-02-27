@@ -22,11 +22,14 @@ pnpm create eruption@latest
 
 The CLI uses [Clack](https://github.com/natemoo-re/clack) to generate the prompt. The main file is located in `lib/eruption-cli.mjs`. To run the CLI locally, run the following command on the root of the repository:
 
+To test the CLI, you first need to run in dev mode:
 ```bash
 pnpm run dev
 ```
-
-This command will run the CLI in watch mode, so you can make changes and see them reflected in the CLI.
+This command will run the CLI in watch mode, so you can make changes and see them reflected in the CLI, while using in watch mode, you can test using:
+```bash
+node ./lib/eruption-cli.mjs
+```
 
 ### What is in this repository?
 
