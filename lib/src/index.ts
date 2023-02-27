@@ -89,7 +89,7 @@ export async function main() {
   }
 
   const nextSteps = `cd ${projectName as string}        \n${
-    install ? '' : 'npm install\n'
+    install ? 'npm install\n' : ''
   }npm run dev`;
 
   note(nextSteps, 'Next steps:');
