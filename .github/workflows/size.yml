@@ -48,7 +48,7 @@ jobs:
 
       - name: Run size limit
         id: sizelimit
-        run: pnpm run size > temp.md
+        run: echo "```" >> temp.md && pnpm run size > temp.md && echo "```" >> temp.md
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
