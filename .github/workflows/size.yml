@@ -50,7 +50,6 @@ jobs:
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-          GITHUB_TOKEN: ${{ github.token }}
           message: |
             Size limit\n 
             
