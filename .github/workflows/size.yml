@@ -44,4 +44,11 @@ jobs:
         run: pnpm build
 
       - name: Run size limit
-        run: pnpm run size
+        id: sizelimit
+        run: echo "size::$(pnpm run size)" >> $GITHUB_OUTPUT
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.sizelimit.outputs.size }}
