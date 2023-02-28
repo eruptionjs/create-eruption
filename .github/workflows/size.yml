@@ -48,10 +48,10 @@ jobs:
 
       - name: Run size limit
         id: sizelimit
-        run: pnpm run size > temp.txt
+        run: pnpm run size > temp.md
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          filePath: temp.txt
+          filePath: temp.md
