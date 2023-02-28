@@ -49,11 +49,11 @@ jobs:
       - name: Run size limit
         id: sizelimit
         run: |
-          echo 'SL=$(pnpm run size)' >> $GITHUB_ENV
+          echo "SL=$(pnpm run size)" >> $GITHUB_OUTPUT
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: |
-            "Tao toma: ${{ env.SL }}"
+            "Tao toma: ${{ steps.sizelimit.outputs.SL }}"
