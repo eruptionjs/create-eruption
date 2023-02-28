@@ -39,6 +39,9 @@ jobs:
 
       - name: Install dependencies using pnpm
         run: pnpm install
-        
+      
+      - name: Install dependencies using pnpm
+        run: pnpm build
+
       - name: Run size limit
         run: pnpm run size
