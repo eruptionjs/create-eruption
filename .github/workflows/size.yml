@@ -48,7 +48,8 @@ jobs:
 
       - name: Run size limit
         id: sizelimit
-        run: echo "SL=$(pnpm run size)" >> $GITHUB_OUTPUT
+        run: |
+          echo "SL=$(pnpm run size)" >> $GITHUB_OUTPUT
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
