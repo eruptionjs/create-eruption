@@ -3,6 +3,8 @@ on: [pull_request]
 jobs:
   size:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     strategy:
       matrix:
         node: ['16.x']
