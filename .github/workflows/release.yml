@@ -1,23 +1,24 @@
-name: CI
-on: [push]
+name: Release to NPM
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
 jobs:
-  build:
-    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node: ['16.x']
-        os: [ubuntu-latest]
-
+  install-deps:
+    name: Install dependencies
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Use Node ${{ matrix.node }}
+      - name: Use Node 16
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '16'
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm
@@ -43,17 +44,9 @@ jobs:
       - name: Install dependencies using pnpm
         run: pnpm install
 
-      - name: Lint
-        run: pnpm run lint
-
       - name: Build
         run: pnpm run build
 
-      - name: Test
-        run: pnpm run test
-
-      - name: Publish
-        run: pnpm run publish
+      - run: npm publish
         env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-            
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
