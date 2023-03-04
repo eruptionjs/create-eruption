@@ -51,9 +51,4 @@ jobs:
 
       - name: Test
         run: pnpm run test
-
-      - name: Publish
-        run: pnpm run publish
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
             
