@@ -123,6 +123,7 @@ jobs:
           commit: 'chore: bump package version'
           version: node .github/changeset-version.js
           publish: pnpm run release
+          cwd: './lib'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
