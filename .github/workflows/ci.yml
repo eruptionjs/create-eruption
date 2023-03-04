@@ -1,5 +1,16 @@
 name: CI
-on: [push]
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+# cancel in-progress runs on new commits to same PR (gitub.event.number)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
@@ -18,6 +29,8 @@ jobs:
         uses: pnpm/action-setup@v2.2.4
         with:
           version: 7
+
+      - run: pnpm install --frozen-lockfile
 
       - name: Cache node_modules
         uses: actions/cache@v3
