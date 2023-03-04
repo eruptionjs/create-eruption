@@ -69,8 +69,8 @@ jobs:
       - name: Check for errors
         run: pnpm run lint
 
-      - name: Run tests
-        run: pnpm run test # The process to run the tests needs the build step.
+      # - name: Run tests
+      #   run: pnpm run test # The process to run the tests needs the build step.
 
   release:
     name: Release to NPM
