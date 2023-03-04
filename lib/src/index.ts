@@ -16,7 +16,7 @@ export async function main() {
   const cleanArgv = process.argv.filter((arg) => arg !== '--');
   const args = parser(cleanArgv, {
     string: ['name', 'kit'],
-    boolean: ['git'],
+    boolean: ['git', 'yes'],
     default: {
       git: true,
     },
@@ -58,10 +58,13 @@ export async function main() {
 
   handleCancelation(initGitRepo);
 
-  const install = await confirm({
-    message: 'Do you want to continue?',
-    initialValue: false,
-  });
+  const install =
+    'yes' in args
+      ? args.yes
+      : await confirm({
+          message: 'Do you want to continue?',
+          initialValue: false,
+        });
 
   handleCancelation(install);
 
