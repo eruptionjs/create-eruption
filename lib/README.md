@@ -4,7 +4,7 @@
 
 ## Usage
 
-To initialize a new project, run the following command (with you prefered package manager)):
+To initialize a new project, run the following command (with you preferred package manager)):
 
 ```bash
 npm init eruption@latest
@@ -20,6 +20,12 @@ pnpm create eruption@latest
 
 The CLI will ask you a few questions (_in interactive_ mode) and then create a new project for you, but you can also pass a few flags to skip the interactive mode.
 
+to skip the interactive mode you can pass the `--name` and `--kit` flags:
+
+```bash
+npm init eruption@latest --name my-project --kit core --yes
+```
+
 ## Available Kits
 
 | Name | Description                            | Repository                         |
@@ -32,7 +38,8 @@ The CLI will ask you a few questions (_in interactive_ mode) and then create a n
 | -------- | --------------------------------------------------------------------------------------------------------- | ----------- |
 | `--name` | The name of the project.                                                                                  | `undefined` |
 | `--kit`  | The kit to use (e.g: core. The CLI will use the `https://github.com/eruptionjs/core` repository as base). | `undefined` |
-| `git`    | Whether to initialize a git repository.                                                                   | `true`      |
+| `--yes`  | Whether to skip the confirm prompt.                                                                       | `false`     |
+| `--git`  | Whether to initialize a git repository.                                                                   | `true`      |
 
 ## License
 
