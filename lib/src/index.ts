@@ -59,14 +59,14 @@ export async function main() {
 
   handleCancelation(initGitRepo);
 
-  const useVscode =  
-        'vscode' in args
-          ? args.vscode
-          : await confirm({
-            message: 'Do you want to include .vscode folder? (Recommended if you are using vscode)',
-            initialValue: true,
-          });
-  
+  const useVscode =
+    'vscode' in args
+      ? args.vscode
+      : await confirm({
+          message: 'Do you want to include .vscode folder? (Recommended if you are using vscode)',
+          initialValue: true,
+        });
+
   handleCancelation(useVscode);
 
   const install =
@@ -92,7 +92,7 @@ export async function main() {
     process.exit(1);
   }
 
-  if(!useVscode){
+  if (!useVscode) {
     const s = spinner();
     s.start('Removing .vscode folder... ⏳');
     const destPath = path.join(process.cwd(), projectName as string);
