@@ -23,6 +23,11 @@ describe('eruption-cli', () => {
     userEvent.keyboard(`${CLIUserEvents.ArrowDown}${CLIUserEvents.Enter}`);
     expect(await findByText(/core/i)).toBeTruthy();
 
+    const vscode = await findByText(/Do you want to include .vscode folder?/i);
+    expect(vscode).toBeTruthy();
+    // // Simulate the user pressing the down arrow key and then the enter key. (We're removing vscode folder)
+    userEvent.keyboard(`${CLIUserEvents.ArrowDown}${CLIUserEvents.Enter}`);
+
     // Simulate the user pressing the down arrow key and then the enter key. (For now, we are selecting the core kit)
     const confirm = await findByText(/Do you want to continue/i);
     expect(confirm).toBeTruthy();
