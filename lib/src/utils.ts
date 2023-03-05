@@ -85,6 +85,20 @@ export async function removeFile(fileName: string, directoryPath: string): Promi
 }
 
 /**
+ * Remove a folder from a given path.
+ */
+export async function removeFolder(folderName: string, directoryPath: string): Promise<boolean> {
+  let removed: boolean;
+  try {
+    await fs.rm(path.join(directoryPath, folderName), { recursive: true, force: true });
+    removed = true;
+  } catch (err) {
+    removed = false;
+  }
+  return removed;
+}
+
+/**
  * Initialize the Node project and update the package.json with the project name.
  */
 export async function initNodeProject(

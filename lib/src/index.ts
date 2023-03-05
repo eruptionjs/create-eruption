@@ -10,13 +10,14 @@ import {
   getKitFromGitHub,
   initGitRepo as initializeGit,
   initNodeProject,
+  removeFolder,
 } from './utils';
 
 export async function main() {
   const cleanArgv = process.argv.filter((arg) => arg !== '--');
   const args = parser(cleanArgv, {
     string: ['name', 'kit'],
-    boolean: ['git', 'yes'],
+    boolean: ['git', 'yes', 'vscode'],
     default: {
       git: true,
     },
@@ -58,6 +59,16 @@ export async function main() {
 
   handleCancelation(initGitRepo);
 
+  const useVscode =  
+        'vscode' in args
+          ? args.vscode
+          : await confirm({
+            message: 'Do you want to include .vscode folder? (Recommended if you are using vscode)',
+            initialValue: true,
+          });
+  
+  handleCancelation(useVscode);
+
   const install =
     'yes' in args
       ? args.yes
@@ -79,6 +90,14 @@ export async function main() {
   } else {
     cancel('Ok, installation canceled. See you later! 🤗');
     process.exit(1);
+  }
+
+  if(!useVscode){
+    const s = spinner();
+    s.start('Removing .vscode folder... ⏳');
+    const destPath = path.join(process.cwd(), projectName as string);
+    await removeFolder('.vscode', destPath);
+    s.stop('Done ✅');
   }
 
   if (initGitRepo) {
