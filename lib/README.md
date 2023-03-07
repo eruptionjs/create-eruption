@@ -23,7 +23,7 @@ The CLI will ask you a few questions (_in interactive_ mode) and then create a n
 to skip the interactive mode you can pass the `--name` and `--kit` flags:
 
 ```bash
-npm init eruption@latest --name my-project --kit core --yes
+npm init eruption@latest -- --name my-project --kit core --yes
 ```
 
 ## Available Kits
@@ -34,13 +34,13 @@ npm init eruption@latest --name my-project --kit core --yes
 
 ## CLI Flags
 
-| Flag      | Description                                                                                               | Default     |
-| --------- | --------------------------------------------------------------------------------------------------------- | ----------- |
-| `--name`  | The name of the project.                                                                                  | `undefined` |
-| `--kit`   | The kit to use (e.g: core. The CLI will use the `https://github.com/eruptionjs/core` repository as base). | `undefined` |
-| `--yes`   | Whether to skip the confirm prompt.                                                                       | `false`     |
-| `--git`   | Whether to initialize a git repository.                                                                   | `true`      |
-| `--vscode`| Whether to include or not .vscode folder                                                                  | `true`      |
+| Flag       | Description                                                                                               | Default     |
+| ---------- | --------------------------------------------------------------------------------------------------------- | ----------- |
+| `--name`   | The name of the project.                                                                                  | `undefined` |
+| `--kit`    | The kit to use (e.g: core. The CLI will use the `https://github.com/eruptionjs/core` repository as base). | `undefined` |
+| `--yes`    | Whether to skip the confirm prompt.                                                                       | `false`     |
+| `--git`    | Whether to initialize a git repository.                                                                   | `true`      |
+| `--vscode` | Whether to include or not .vscode folder                                                                  | `true`      |
 
 ## License
 
