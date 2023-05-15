@@ -11,6 +11,7 @@ import {
   initGitRepo as initializeGit,
   initNodeProject,
   removeFolder,
+  removeFile,
 } from './utils';
 
 export async function main() {
@@ -69,6 +70,14 @@ export async function main() {
 
   handleCancelation(useVscode);
 
+  const dockerSupport =
+    'docker' in args
+      ? args.vscode
+      : await confirm({
+          message: 'Do you want to include Docker support?',
+          initialValue: false,
+        });
+
   const install =
     'yes' in args
       ? args.yes
@@ -97,6 +106,18 @@ export async function main() {
     s.start('Removing .vscode folder... ⏳');
     const destPath = path.join(process.cwd(), projectName as string);
     await removeFolder('.vscode', destPath);
+    s.stop('Done ✅');
+  }
+
+  if (!dockerSupport) {
+    const s = spinner();
+    s.start('Removing docker related files... ⏳');
+    const destPath = path.join(process.cwd(), projectName as string);
+    await removeFile('.dockerignore', destPath);
+    await removeFile('Dockerfile', destPath);
+    await removeFile('dockerfile.dev', destPath);
+    await removeFile('docker-compose-dev.yml', destPath);
+    await removeFile('docker-compose.yml', destPath);
     s.stop('Done ✅');
   }
 
