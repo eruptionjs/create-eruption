@@ -28,6 +28,11 @@ describe('eruption-cli', () => {
     // // Simulate the user pressing the down arrow key and then the enter key. (We're removing vscode folder)
     userEvent.keyboard(`${CLIUserEvents.ArrowDown}${CLIUserEvents.Enter}`);
 
+    const docker = await findByText(/Do you want to include Docker support?/i);
+    expect(docker).toBeTruthy();
+    // // Simulate the user pressing the down arrow key and then the enter key. (We're removing vscode folder)
+    userEvent.keyboard(`${CLIUserEvents.ArrowDown}${CLIUserEvents.Enter}`);
+
     // Simulate the user pressing the down arrow key and then the enter key. (For now, we are selecting the core kit)
     const confirm = await findByText(/Do you want to continue/i);
     expect(confirm).toBeTruthy();
