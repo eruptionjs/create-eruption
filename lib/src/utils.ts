@@ -6,6 +6,8 @@ import path from 'path';
 // @ts-ignore
 import degit from 'tiged';
 
+import { PackageManagers } from './types';
+
 /**
  * Handle the user cancelation in the CLI.
  * @param value The value of Symbol of the clack prompt.
@@ -123,3 +125,19 @@ export async function initNodeProject(
     cancel('Failed to update package.json. You may need to update manually');
   }
 }
+
+/**
+ * Install the dependencies of the project preserving the lockfile.
+ * For non-NPM package managers, we'll use the `install` command and
+ * generate a new lockfile.
+ * @param pm The package manager to use.
+ * @returns The command to install the dependencies.
+ */
+export const getPmInstallCommands = (pm: PackageManagers = 'npm') => {
+  const commands = {
+    npm: 'npm ci',
+    yarn: 'yarn install',
+    pnpm: 'pnpm install',
+  };
+  return commands[pm];
+};

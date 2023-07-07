@@ -4,6 +4,8 @@ import { setTimeout } from 'node:timers/promises';
 import path from 'path';
 import parser from 'yargs-parser';
 
+import { PackageManagers } from '../dist/types';
+
 import { AVAILABLE_KITS } from './constants';
 import {
   handleCancelation,
@@ -12,12 +14,13 @@ import {
   initNodeProject,
   removeFolder,
   removeFile,
+  getPmInstallCommands,
 } from './utils';
 
 export async function main() {
   const cleanArgv = process.argv.filter((arg) => arg !== '--');
   const args = parser(cleanArgv, {
-    string: ['name', 'kit'],
+    string: ['name', 'kit', 'pm'], // --pm is the package manager. E.g: --pm yarn
     boolean: ['git', 'yes', 'vscode'],
     default: {
       git: true,
@@ -78,6 +81,31 @@ export async function main() {
           initialValue: false,
         });
 
+  // NPM will be the default package manager.
+  const packageManager: PackageManagers = args.pm
+    ? args.pm
+    : await select({
+        message: 'Select your package manager',
+        options: [
+          {
+            value: 'npm',
+            label: 'NPM',
+            hint: 'Default package manager',
+          },
+          {
+            value: 'yarn',
+            label: 'Yarn',
+          },
+          {
+            value: 'pnpm',
+            label: 'PNPM',
+          },
+        ],
+      });
+
+  // If the user cancel the package manager selection, we will use NPM as default.
+  handleCancelation(packageManager);
+
   const install =
     'yes' in args
       ? args.yes
@@ -102,23 +130,17 @@ export async function main() {
   }
 
   if (!useVscode) {
-    const s = spinner();
-    s.start('Removing .vscode folder... ⏳');
     const destPath = path.join(process.cwd(), projectName as string);
     await removeFolder('.vscode', destPath);
-    s.stop('Done ✅');
   }
 
   if (!dockerSupport) {
-    const s = spinner();
-    s.start('Removing docker related files... ⏳');
     const destPath = path.join(process.cwd(), projectName as string);
     await removeFile('.dockerignore', destPath);
     await removeFile('Dockerfile', destPath);
     await removeFile('dockerfile.dev', destPath);
     await removeFile('docker-compose-dev.yml', destPath);
     await removeFile('docker-compose.yml', destPath);
-    s.stop('Done ✅');
   }
 
   if (initGitRepo) {
@@ -131,9 +153,14 @@ export async function main() {
     }
   }
 
+  if (packageManager !== 'npm') {
+    const destPath = path.join(process.cwd(), projectName as string);
+    await removeFile('package-lock.json', destPath);
+  }
+
   const nextSteps = `cd ${projectName as string}        \n${
-    install ? 'npm install\n' : ''
-  }npm run dev`;
+    install ? `${green(getPmInstallCommands(packageManager))} to install the dependencies\n` : ''
+  }and ${green(`${packageManager} run dev`)} to start the development server`;
 
   note(nextSteps, 'Next steps:');
 
