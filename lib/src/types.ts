@@ -16,3 +16,8 @@ export type Flags = {
   git: boolean;
   install: boolean;
 };
+
+/**
+ * Package managers supported by Eruption.
+ */
+export type PackageManagers = 'yarn' | 'npm' | 'pnpm';

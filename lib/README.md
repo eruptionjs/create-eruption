@@ -42,6 +42,7 @@ npm init eruption@latest -- --name my-project --kit core --yes
 | `--git`    | Whether to initialize a git repository.                                                                   | `true`      |
 | `--vscode` | Whether to include or not .vscode folder                                                                  | `true`      |
 | `--docker` | Whether to include or not docker support                                                                  | `false`     |
+| `--pm` | The package manager to use. | `npm` |
 
 ## License
 
