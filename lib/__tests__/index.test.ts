@@ -25,18 +25,24 @@ describe('eruption-cli', () => {
 
     const vscode = await findByText(/Do you want to include .vscode folder?/i);
     expect(vscode).toBeTruthy();
-    // // Simulate the user pressing the down arrow key and then the enter key. (We're removing vscode folder)
+    // Simulate the user pressing the down arrow key and then the enter key. (We're removing vscode folder)
     userEvent.keyboard(`${CLIUserEvents.ArrowDown}${CLIUserEvents.Enter}`);
 
     const docker = await findByText(/Do you want to include Docker support?/i);
     expect(docker).toBeTruthy();
-    // // Simulate the user pressing the down arrow key and then the enter key. (We're removing vscode folder)
+    // Simulate the user pressing the enter key. By default we aren't including docker support.
+    userEvent.keyboard(`${CLIUserEvents.Enter}`);
+
+    const packageManager = await findByText(/Select your package manager/i);
+    expect(packageManager).toBeTruthy();
+    // Simulate the user pressing the down arrow key and then the enter key. (For now, we are selecting yarn)
     userEvent.keyboard(`${CLIUserEvents.ArrowDown}${CLIUserEvents.Enter}`);
 
     // Simulate the user pressing the down arrow key and then the enter key. (For now, we are selecting the core kit)
     const confirm = await findByText(/Do you want to continue/i);
     expect(confirm).toBeTruthy();
 
+    // Here we are confirming the cli prompts.
     userEvent.keyboard(`${CLIUserEvents.ArrowDown}${CLIUserEvents.Enter}`);
 
     expect(await findByText(/starting the project/i)).toBeTruthy();
