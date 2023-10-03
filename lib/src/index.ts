@@ -4,9 +4,8 @@ import { setTimeout } from 'node:timers/promises';
 import path from 'path';
 import parser from 'yargs-parser';
 
-import { PackageManagers } from '../dist/types';
-
 import { AVAILABLE_KITS } from './constants';
+import { PackageManagers } from './types';
 import {
   handleCancelation,
   getKitFromGitHub,
