@@ -20,4 +20,4 @@ export type Flags = {
 /**
  * Package managers supported by Eruption.
  */
-export type PackageManagers = 'yarn' | 'npm' | 'pnpm';
+export type PackageManagers = 'yarn' | 'npm' | 'pnpm' | 'bun';

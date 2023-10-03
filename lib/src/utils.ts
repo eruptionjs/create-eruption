@@ -138,6 +138,7 @@ export const getPmInstallCommands = (pm: PackageManagers = 'npm') => {
     npm: 'npm ci',
     yarn: 'yarn install',
     pnpm: 'pnpm install',
+    bun: 'bun install',
   };
   return commands[pm];
 };
