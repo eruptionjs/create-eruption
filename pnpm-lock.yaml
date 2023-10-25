@@ -100,8 +100,8 @@ importers:
         version: 21.1.1
     devDependencies:
       '@clack/prompts':
-        specifier: ^0.5.0
-        version: 0.5.0
+        specifier: ^0.7.0
+        version: 0.7.0
       '@tsconfig/node16':
         specifier: ^1.0.3
         version: 1.0.3
@@ -352,17 +352,17 @@ packages:
       prettier: 2.8.2
     dev: true
 
-  /@clack/core@0.2.0:
-    resolution: {integrity: sha512-fFGxlUXCHGnfSVevr40991AEhuI0r+krziqWzGty5bx/9tfFDV22+z2WeNzf74VSlzbjI8bOu5KIbaQyDBGFWQ==}
+  /@clack/core@0.3.3:
+    resolution: {integrity: sha512-5ZGyb75BUBjlll6eOa1m/IZBxwk91dooBWhPSL67sWcLS0zt9SnswRL0l26TVdBhb0wnWORRxUn//uH6n4z7+A==}
     dependencies:
       picocolors: 1.0.0
       sisteransi: 1.0.5
     dev: true
 
-  /@clack/prompts@0.5.0:
-    resolution: {integrity: sha512-4XZeJ65dgpXk6k+KtJ6aWNu0uuwHatAp0nXacfBZM9hTrScv3OvqXzaEavz9fq10lrTXHvqLBJIaZJ/IjwGEwA==}
+  /@clack/prompts@0.7.0:
+    resolution: {integrity: sha512-0MhX9/B4iL6Re04jPrttDm+BsP8y6mS7byuv0BvXgdXhbV5PdlsHt55dvNsuBCPZ7xq1oTAOOuotR9NFbQyMSA==}
     dependencies:
-      '@clack/core': 0.2.0
+      '@clack/core': 0.3.3
       picocolors: 1.0.0
       sisteransi: 1.0.5
     dev: true
