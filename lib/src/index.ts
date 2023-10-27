@@ -4,7 +4,7 @@ import { setTimeout } from 'node:timers/promises';
 import path from 'path';
 import parser from 'yargs-parser';
 
-import { AVAILABLE_KITS } from './constants';
+import { AVAILABLE_KITS, AVAILABLE_LIBRARIES } from './constants';
 import { PackageManagers } from './types';
 import {
   handleCancelation,
@@ -43,11 +43,27 @@ export async function main() {
 
   handleCancelation(projectName);
 
+  const flavor = args.flavor
+    ? args.flavor
+    : await select({
+        message: 'Select your Eruption flavor',
+        options: [
+          {
+            value: 'application',
+            label: 'Create an Application',
+          },
+          {
+            value: 'library',
+            label: 'Create a Library (e.g: a design system)',
+          },
+        ],
+      });
+
   const kit = args.kit
     ? args.kit
     : await select({
         message: 'Select your Eruption kit',
-        options: AVAILABLE_KITS,
+        options: flavor === 'application' ? AVAILABLE_KITS : AVAILABLE_LIBRARIES,
       });
 
   handleCancelation(kit);
@@ -72,13 +88,16 @@ export async function main() {
 
   handleCancelation(useVscode);
 
-  const dockerSupport =
-    'docker' in args
-      ? args.vscode
-      : await confirm({
-          message: 'Do you want to include Docker support?',
-          initialValue: false,
-        });
+  let dockerSupport = false;
+  if (flavor === 'application') {
+    dockerSupport =
+      'docker' in args
+        ? args.vscode
+        : await confirm({
+            message: 'Do you want to include Docker support?',
+            initialValue: false,
+          });
+  }
 
   // NPM will be the default package manager.
   const packageManager: PackageManagers = args.pm
@@ -110,7 +129,7 @@ export async function main() {
       ? args.yes
       : await confirm({
           message: 'Do you want to continue?',
-          initialValue: false,
+          initialValue: true,
         });
 
   handleCancelation(install);
