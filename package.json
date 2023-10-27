@@ -16,8 +16,8 @@
     "type-check": "tsc --noEmit",
     "publish": "pnpm run build && cd ./lib && npm publish",
     "changeset": "changeset",
-    "prerelease": "pnpm run build && pnpm run test",
-    "release": "changeset publish"
+    "ci:version": "changeset version",
+    "ci:publish": "changeset publish"
   },
   "description": "PNPM monorepo template",
   "license": "MIT",
